@@ -3,7 +3,7 @@
 A responsive news and blog platform built with Next.js. Browse the latest articles, filter by category, search by keyword, and read full article details — all sourced from real, live news data.
 
 ## Live Demo
-[Add your Vercel link here after deployment]
+[https://news-blog-app-virid.vercel.app]
 
 ## GitHub Repository
 [https://github.com/awaiszamir244-svg/news-blog-app]
