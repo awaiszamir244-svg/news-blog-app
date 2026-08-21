@@ -6,7 +6,7 @@ A responsive news and blog platform built with Next.js. Browse the latest articl
 [Add your Vercel link here after deployment]
 
 ## GitHub Repository
-[Add your GitHub repo link here]
+[https://github.com/awaiszamir244-svg/news-blog-app]
 
 ## Features
 
