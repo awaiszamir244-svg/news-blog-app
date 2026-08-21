@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# The Wire Desk — News & Blog Web App
 
-## Getting Started
+A responsive news and blog platform built with Next.js. Browse the latest articles, filter by category, search by keyword, and read full article details — all sourced from real, live news data.
 
-First, run the development server:
+## Live Demo
+[Add your Vercel link here after deployment]
 
+## GitHub Repository
+[Add your GitHub repo link here]
+
+## Features
+
+- Homepage with featured + latest articles (title, image, description, category, source, date)
+- Filter articles across 7 categories: World, Business, Technology, Entertainment, Sports, Science, Health
+- Full article detail pages with complete content and a link to the original source
+- Keyword search across articles
+- Loading skeletons, empty states, and error handling throughout
+- Fully responsive design — desktop, tablet, and mobile
+- Custom "Wire Desk" visual identity — editorial serif headlines, monospace metadata tags, live-pulse indicator
+
+## Tech Stack
+
+- **Framework:** Next.js 15 (App Router)
+- **Styling:** Tailwind CSS v4
+- **Data source:** [GNews API](https://gnews.io) — real-time news headlines and search
+- **Fonts:** Source Serif 4, Inter, IBM Plex Mono (via next/font)
+- **Deployment:** Vercel
+
+## Getting Started Locally
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+   git clone <your-repo-url>
+   cd news-blog-app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+   npm install
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+3. Create a `.env.local` file in the project root:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+GNEWS_API_KEY=your_gnews_api_key_here
 
-## Learn More
+   Get a free key at [gnews.io](https://gnews.io).
 
-To learn more about Next.js, take a look at the following resources:
+4. Run the development server:
+```bash
+   npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. Open [http://localhost:3000](http://localhost:3000)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+src/
+app/
+page.js # Homepage
+category/[slug]/page.js # Category filter pages
+article/[id]/page.js # Article detail page
+search/page.js # Search results
+components/
+Header.js
+Footer.js
+ArticleCard.js
+ArticleImage.js
+lib/
+gnews.js # GNews API integration
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Notes
+
+- Articles are identified by their source URL, since GNews's free tier does not provide stable article IDs.
+- API responses are cached for 1 hour to stay within GNews's free-tier rate limit.

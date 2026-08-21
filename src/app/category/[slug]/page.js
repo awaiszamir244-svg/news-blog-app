@@ -1,25 +1,32 @@
 import Header from "@/components/Header";
 import ArticleCard from "@/components/ArticleCard";
-import { getArticles } from "@/lib/gnews";
+import { getArticles, CATEGORIES } from "@/lib/gnews";
+import { notFound } from "next/navigation";
 import Footer from "@/components/Footer";
 
-export default async function HomePage() {
+export default async function CategoryPage({ params }) {
+  const { slug } = await params;
+
+  if (!CATEGORIES.includes(slug)) {
+    notFound();
+  }
+
   let articles = [];
   let errorMessage = null;
 
   try {
-    articles = await getArticles({ category: "general", max: 10 });
+    articles = await getArticles({ category: slug, max: 12 });
   } catch (err) {
     errorMessage = err.message;
   }
 
   return (
     <div className="min-h-screen bg-paper">
-      <Header activeCategory="general" />
+      <Header activeCategory={slug} />
 
       <main className="max-w-6xl mx-auto px-4 py-8">
         <div className="flex items-baseline justify-between mb-6 border-b border-hairline pb-3">
-          <h1 className="font-serif text-3xl font-bold text-ink">Latest</h1>
+          <h1 className="font-serif text-3xl font-bold text-ink capitalize">{slug}</h1>
           <span className="font-mono text-xs text-stone uppercase">
             {articles.length} stories
           </span>
@@ -33,17 +40,14 @@ export default async function HomePage() {
 
         {!errorMessage && articles.length === 0 && (
           <div className="border border-hairline p-8 text-center text-stone font-mono text-sm">
-            No articles found. Check back later.
+            No articles found in this category. Check back later.
           </div>
         )}
 
         {articles.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="sm:col-span-2 lg:col-span-2 lg:row-span-2">
-              <ArticleCard article={articles[0]} category="general" featured />
-            </div>
-            {articles.slice(1).map((article) => (
-              <ArticleCard key={article.id || article.url} article={article} category="general" />
+            {articles.map((article) => (
+              <ArticleCard key={article.id || article.url} article={article} category={slug} />
             ))}
           </div>
         )}
